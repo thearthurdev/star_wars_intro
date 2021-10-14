@@ -48,7 +48,7 @@ class TwinkleLittleStar extends StatelessWidget {
 }
 
 class Space extends StatefulWidget {
-  Space({this.opacity});
+  Space({@required this.opacity});
 
   final Animation<double> opacity;
 
@@ -466,11 +466,11 @@ void main() {
   runApp(
     MaterialApp(
       title: 'Star Wars Intro',
-      home: StarWarsIntro(),
+      home: SetupPage(),
       // home: TempView(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.yellow,
+        primarySwatch: Colors.orange,
       ),
     ),
   );
@@ -495,6 +495,73 @@ class TempView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SetupPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      type: MaterialType.transparency,
+      child: Stack(
+        children: [
+          Space(opacity: AlwaysStoppedAnimation(1.0)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.all(32.0),
+                constraints: BoxConstraints(maxWidth: 600.0),
+                child: Text(
+                  'Welcome to Star Wars Intro with Flutter',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFFFFC500),
+                    fontSize: 48.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Container(
+                constraints: BoxConstraints(maxHeight: 500.0, maxWidth: 300.0),
+                padding: EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.0),
+                  border: Border.all(
+                    width: 1.5,
+                    color: Color(0xFFFFC500),
+                  ),
+                ),
+                child: TextField(
+                  cursorWidth: 3.0,
+                  style: TextStyle(
+                    color: Color(0xFFFFC500),
+                    fontSize: 32.0,
+                  ),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.0),
+                  color: Color(0xFFFFC500),
+                ),
+                child: Center(
+                  child: Text(
+                    'Play',
+                    style: TextStyle(
+                      fontSize: 32.0,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
